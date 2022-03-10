@@ -23,6 +23,9 @@ public class Miner {
      */
     // TODO
     private static Block setValidNonce(Block block){
+        while (block.getHash().toBigInteger().compareTo(block.getDifficultyTargetAsInteger()) < 0) {
+            block.setNonce(block.getNonce() + 1);
+        }
         return block;
     }
 
@@ -49,8 +52,9 @@ public class Miner {
      */
     // TODO
     public Block mine(Block lastBlock, List<Transaction> txs, byte[] pubKey){
+        Block block = lastBlock.createNextBlock(null);
 
-        return null;
+        return block;
     }
 }
 
